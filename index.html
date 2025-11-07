@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+    <meta name="application-name" content="Form" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="browsermode" content="application" />
+    <meta name="x5-page-mode" content="app" />
+    <meta name="keywords" content="Form,Components" />
+    <meta name="author" content="CHINBEKER" />
+    <meta name="description" content="Web Components Form" />
+    <style type="text/css">
+        html, body, div, header, button {box-sizing: border-box;}
+        html {font-size: 11.55pt;scroll-behavior: smooth;}
+        body {margin: 0;}
+        .page-main {margin-top: 0.5em;}
+        .button-box {padding-inline: 1.2em;}
+        button {
+            margin-block: 1.5em;
+            width: 8.5em;
+            line-height: 2.2em;
+            outline: none;
+            border: none;
+            border-radius: 0.2em;
+            color: white;
+            background-color: rgb(0, 120, 212);
+            cursor: pointer;
+        }
+
+        .my-form {
+            /* --form-legend-backg-color: rgb(0,108,190); */
+            /* --form-item-row-gap: 0.35em; */
+            /* --form-item-border-style: none; */
+            /* --form-item-focus-bgcolor: rgba(244,245,255,0.90); */
+            /* --form-item-invalid-bgcolor: rgb(252,236,236); */
+            /* --form-field-title-width: 4em; */
+            /* --form-field-title-weight: bold; */
+            /* --form-input-width: 50%; */
+            /* --form-input-radio-width: 15%; */
+            /* --form-input-check-width: 25%; */
+            /* --form-input-border-radius: 0.22em; */
+            /* --form-input-accent-color: rgb(0,0,255); */
+            /* --form-input-focus-color: rgb(110,168,246); */
+            /* --form-option-bgcolor: rgb(24,145,242); */
+            /* --form-button-width: 100%; */
+            /* --form-button-border-radius: 0.2em; */
+            /* --form-button-backg-color: rgb(24,145,242); */
+            /* --form-button-bgcolor-hover: rgb(0,107,189); */
+            /* --form-button-bgcolor-active: rgb(0,92,163); */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="page-header">
+        <button type="button">点击切换样式</button>
+    </header>
+    <main></main>
+</div>
+
+<script type="module">
+// 1. 模块加载
+import FormControl from '/src/main.js';
+const form = new FormControl();
+
+
+// 2. 创建配置文件
+const config = {
+    // id: '',
+    // name: '',
+    class: 'my-form',
+    // action : '',
+    // method: 'get',
+    // autocomplete: 'off',
+    // enctype: 'application/x-www-form-urlencoded',
+    // target: '_blank',
+    // charset: 'utf-8',
+    // nowrap: true,
+    // history: true,
+    // button : {
+    //     back: false,
+    //     reset: true,
+    //     submit: true,
+    // }
+}
+
+// 设置配置生效
+console.log(form.config(config));
+
+// 创建表单渲染数据源
+const source = [
+    {
+        // ------------------------------------ 分组 ------------------------------------
+        group: '文本框', // 如果不需要分组，此处请写空白字符串，所有表单字段配置全写在当前的 fields 中。
+        fields: [
+            {
+                type: 'text',
+                name: 'Text',
+                head: '文本',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 1,
+                    // maxlength: 10,
+                    // min: 0,
+                    // max: 0,
+                    // step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '单行文本框 input[type="text"] (minlenght, maxlenght 限制长度)',
+            },
+            {
+                type: 'search',
+                name: 'wd',
+                head: '搜索',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    minlength: 1,
+                    maxlength: 10,
+                    // min: 0,
+                    // max: 0,
+                    // step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '搜索框 input(type="search") (minlenght, maxlenght 限制长度) 自带删除按钮',
+            },
+            {
+                type: 'number',
+                name: 'Number',
+                head: '数字',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 1,
+                    // maxlength: 10,
+                    min: 0,
+                    max: 100,
+                    step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '数字 input[type="number"] (min, max 限制大小范围，step 设定步长)',
+            },
+            {
+                type: 'password',
+                name: 'Password',
+                head: '密码',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    minlength: 6,
+                    maxlength: 12,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '密码框 input[type="password"] (minlenght, maxlenght 限制长度)',
+            },
+            {
+                type: 'tel',
+                name: 'Tel',
+                head: '电话',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    minlength: 5,
+                    maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '电话号码 input[type="tel"] (minlenght, maxlenght 限制长度)',
+            },
+            {
+                type: 'url',
+                name: 'Url',
+                head: '网址',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '网址框 input[type="url"]',
+            },
+            {
+                type: 'email',
+                name: 'Email',
+                head: '邮箱',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '电子邮箱 input[type="email"]',
+            },
+            {
+                type: 'text',
+                name: 'Readonly',
+                head: '只读',
+                value : '只读字段不能修改，会提交',
+                required: true,
+                readonly: true,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '只读字段 input[type="text"][readonly]',
+            },
+            {
+                type: 'text',
+                name: 'Disabled',
+                head: '禁用',
+                value : '禁用字段不能修改，不会被提交',
+                required: true,
+                readonly: false,
+                disabled: true,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '禁用字段 input[type="text"][disabled]',
+            },
+            {
+                type: 'textarea',
+                name: 'Textarea',
+                head: '多行文本框',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    rows: 8,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '多行文本框 textarea',
+            },
+        ]
+    },
+
+    // ------------------------------------ 分组 ------------------------------------
+    {
+        group: '日期类型',     // 分组标题
+        fields: [
+            {
+                type: 'date',
+                name: 'Date',
+                head: '日期',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '年月日 input[type="date"]',
+            },
+            {
+                type: 'month',
+                name: 'Month',
+                head: '年月',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '年月 input[type="month"]',
+            },
+            {
+                type: 'time',
+                name: 'Time',
+                head: '时间',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 5,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '时分 input[type="time"]',
+            },
+            {
+                type: 'time',
+                name: 'TimeSec',
+                head: '时间',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '时分秒 input[type="time"][step="1"]',
+            },
+            {
+                type: 'datetime-local',
+                name: 'DateT',
+                head: '日期时间',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    // step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '年月日 时分 input[type="datetime-local"]',
+            },
+            {
+                type: 'datetime-local',
+                name: 'DateTime',
+                head: '日期时间',
+                value : '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                props: {
+                    // minlength: 5,
+                    // maxlength: 11,
+                    // min: 0,
+                    // max: 100,
+                    step: 1,
+                    // pattern: '',
+                    // title: '',
+                    // placeholder: '',
+                },
+                message: {
+                    // required : '',
+                    // min: '',
+                    // max: '',
+                    // minlength: '',
+                    // maxlength: '',
+                    // pattern: '',
+                },
+                describe: '年月日 时分秒 input[type="datetime-local"][step="1"]',
+            },
+        ],
+    },
+
+    {
+        group: '选择框',
+        fields: [
+            {
+                type: 'select',
+                name: 'Select',
+                head: '列表',
+                value: '',
+                required: true,
+                readonly: false,
+                disabled: false,
+                options: [
+                    {value: 'a1', title: '一年级'},
+                    {value: 'a2', title: '二年级'},
+                    {value: 'a3', title: '三年级'},
+                    {value: 'a4', title: '四年级'},
+                    {value: 'a5', title: '五年级'},
+                    {value: 'a6', title: '六年级'},
+                ],
+                message: {
+                    // required : '',
+                },
+                describe: '选择列表 select',
+            },
+            {
+                type: 'select',
+                name: 'Selected',
+                head: '列表',
+                value: 'a5',
+                // value: '五年级',
+                required: true,
+                readonly: false,
+                disabled: false,
+                options: [
+                    {value: 'a1', title: '一年级'},
+                    {value: 'a2', title: '二年级'},
+                    {value: 'a3', title: '三年级'},
+                    {value: 'a4', title: '四年级'},
+                    {value: 'a5', title: '五年级'},
+                    {value: 'a6', title: '六年级'},
+                ],
+                message: {
+                    // required : '',
+                },
+                describe: '选择列表 select[value=""] (有默认选项)',
+            },
+            {
+                type: 'radio',
+                name: 'Radio',
+                head: '单选',
+                // value: 2,
+                // value: '女',
+                required: true,
+                readonly: false,
+                disabled: false,
+                options: [
+                    {value: 1, title: '男'},
+                    {value: 2, title: '女'},
+                ],
+                message: {
+                    // required : '',
+                },
+                describe: '单选按钮 input[type="radio"]',
+            },
+            {
+                type: 'checkbox',
+                name: 'Checkbox',
+                head: '常用功能偏好',
+                describe: '请选择你最常用的功能（可多选，至少1个）',
+                required: true,
+                value: '',
+                options: [
+                    { value: 'search', title: '全局搜索' },
+                    { value: 'collect', title: '内容收藏' },
+                    { value: 'share', title: '一键分享' },
+                    { value: 'download', title: '文件下载' },
+                    { value: 'edit', title: '在线编辑' },
+                    { value: 'comment', title: '评论互动' },
+                    { value: 'notify', title: '消息提醒' },
+                    { value: 'history', title: '历史记录' },
+                    { value: 'template', title: '模板套用' },
+                    { value: 'export', title: '数据导出' },
+                    { value: 'print', title: '打印功能'},
+                    { value: 'sync', title: '多端同步' }
+                ],
+                message: {
+                    required: '请至少选择1个常用功能',
+                    pattern: '功能选择格式不正确'
+                }
+            },
+        ],
+    }
+];
+
+// 渲染表单
+const target = document.querySelector('main');
+form.render(source, target);
+
+
+// 其他代码
+const toggle = document.querySelector('button');
+// 切换样式 toggle() 方法
+toggle.onclick = ()=>{form.toggle()};
+
+self.form = form;
+console.log(form.fields);
+</script>
+</body>
+</html>
