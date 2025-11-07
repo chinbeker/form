@@ -35,4 +35,4 @@
 
 #### 联系我
 
-电子邮箱：chinbeker@foxmai.com
+电子邮箱：chinbeker@foxmail.com
