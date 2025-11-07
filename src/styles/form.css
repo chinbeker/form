@@ -1,0 +1,228 @@
+:host{
+    contain : content;
+    font-size: inherit;
+    --form-legend-backg-color: rgb(0,108,190);
+    --form-item-row-gap: 0.35em;
+    --form-item-border-style: none;
+    --form-item-focus-bgcolor: rgba(244,245,255,0.90);
+    --form-item-invalid-bgcolor: rgb(252,236,236);
+    --form-field-title-width: 4em;
+    --form-field-title-weight: bold;
+    --form-input-width: 100%;
+    --form-input-radio-width: 15%;
+    --form-input-check-width: 25%;
+    --form-input-border-radius: 0.22em;
+    --form-input-accent-color: rgb(0,0,255);
+    --form-input-focus-color: rgb(110,168,246);
+    --form-option-bgcolor: rgb(24,145,242);
+    --form-button-width: 100%;
+    --form-button-border-radius: 0.2em;
+    --form-button-backg-color: rgb(24,145,242);
+    --form-button-bgcolor-hover: rgb(0,107,189);
+    --form-button-bgcolor-active: rgb(0,92,163);
+}
+form {background-color: white;}
+form, fieldset, legend, label, input, textarea, select, datalist, option, button {box-sizing: border-box}
+div, p, span, a, i, img, svg, button {box-sizing: border-box}
+.form-group {margin: 0;padding: 0.5em 0;border: none}
+.form-group > legend {
+    padding-inline: 1em;
+    width: 100%;
+    font-weight: bold;
+    line-height: 2.12em;
+    color: white;
+    background-color: var(--form-legend-backg-color);
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.form-group > legend:empty {display: none}
+.form-item {padding-block: var(--form-item-row-gap);padding-inline: 1.2em;line-height: 1em}
+.form-item:not(:first-of-type) {border-top-width: 1px;border-top-style: var(--form-item-border-style);border-color: rgb(220,220,220)}
+.form-group:not(.nowrap) .field-infor {margin-top: 0.25em}
+.field-infor > .field-title {position: relative;font-weight: var(--form-field-title-weight)}
+.form-group:not(.nomark) .field-infor > .field-title.required::before {
+    content: '*';
+    position: absolute;
+    margin-left: -0.5em;
+    vertical-align: top;
+    font-weight: normal;
+    color: rgb(255,0,0);
+}
+.field-infor > .field-describe {margin-top: 0.3em;margin-bottom: 0.45em;line-height: 1.2em;font-size: 0.86em;color: rgb(112,112,112)}
+.field-infor > .field-describe > i {font-style: normal}
+.field-infor > .field-describe > i:empty {display: none}
+.form-group.nowrap .form-item-main.top {display: flex}
+.form-group.nowrap .form-item-main:not(.top) {display: flex;align-items: center}
+.form-group.nowrap .form-item-main.top > .field-infor {padding-top: 0.65em}
+.form-group.nowrap .field-infor {flex: none;margin-right: 0.5em;width: var(--form-field-title-width)}
+.form-group.nowrap .field-infor > .field-title > span {display: inline-block;width: 100%;text-align: justify;text-align-last: justify}
+.form-group.nowrap .field-infor > .field-describe {display: none;word-break: break-all}
+.field-input, .input-select {position: relative}
+.form-group.nowrap .field-input {flex: auto}
+.form-group.nowrap .field-select {flex: auto}
+.form-group:not(.nowrap) .field-input {width: var(--form-input-width)}
+.form-group:not(.nowrap) .field-select {width: var(--form-input-width)}
+input, select {outline: none;font-family: inherit;font-size: inherit;white-space: nowrap;background-color: white}
+textarea {outline: none;font-size: inherit;background-color: white}
+input::placeholder, textarea::placeholder {color: rgb(150,150,150)}
+select, textarea {border-width: 1px;border-style: solid;border-color: rgb(204,204,204)}
+.field-input > label {display: block}
+.input-radio, .input-checkbox, .input-address {display: flex;flex-wrap: wrap;border-radius: var(--form-input-border-radius)}
+.input-radio > label, .input-checkbox > label {
+    display: inline-flex;
+    padding-block: 0.28em;
+    padding-inline-end: 0.6em;
+    max-width: 100%;
+    flex-grow: 0;
+    align-items: center;
+    white-space: nowrap;
+}
+.input-radio {padding-block: 0.45em;padding-inline: 0.44em}
+.form-group:not(.nowrap) .input-radio {margin-top: 0.4em}
+.input-radio > label {flex-basis: var(--form-input-radio-width)}
+.input-checkbox {padding: 0.28em 0.32em;min-height: 2.28em;border: 1px solid rgb(204,204,204);background-color: rgb(255,255,255)}
+.input-checkbox > label {flex-basis: var(--form-input-check-width)}
+.input-address > label {flex: 1 1 33.33%;white-space: nowrap}
+.address-detail {margin-block-start: 0.2em}
+.input-select > .input-icon {
+    position: absolute;
+    width: 100%;
+    padding-inline: 0.45em;
+    line-height: 1.5em;
+    text-align: right;
+    font-size: 1.6em;
+    color: #464646;
+}
+.select-option.open {visibility: visible}
+.select-option {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    margin-top: 3px;
+    padding: 0.45em 0.35em;
+    visibility: hidden;
+    font-size: 0.95em;
+    border-radius: var(--form-input-border-radius);
+    background-color: white;
+    box-shadow: 0 1px 6px 1px rgb(212,212,212);
+}
+.select-option > ol {
+    display: flex;
+    min-height: 2.68em;
+    max-height: 23.6em;
+    flex-wrap: wrap;
+    gap: 0.2em;
+    overflow-y: auto;
+    background-color: white;
+    scroll-behavior: smooth;
+    scroll-snap-type: block;
+    overscroll-behavior-y: contain;
+}
+.select-option > ol > li {
+    flex: 1 1 100%;
+    padding: 0.7em 0.6em;
+    overflow-x: hidden;
+    font-size: inherit;
+    white-space: nowrap;
+    border-radius: var(--form-input-border-radius);
+    scroll-snap-align: start;
+    user-select: none;
+}
+.select-option > ol > li:hover {background-color: #F0F1F4}
+.select-option > ol > li:active {color: white;background-color: var(--form-option-bgcolor)}
+.select-option > ol > li[selected] {color: white;background-color: var(--form-option-bgcolor)}
+.input-hidden {position: absolute;bottom: 0;right: 0;width: 100%;z-index: -1}
+.field-input input:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="color"]):not([type="image"]) {
+    width: 100%;
+    padding: 0.6em;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: var(--form-input-border-radius);
+}
+input[type="text"],input[type="search"], input[type="number"], input[type="password"] {border-color: rgb(204,204,204)}
+input[type="tel"], input[type="url"], input[type="email"], input[type="file"] {border-color: rgb(204,204,204)}
+input[type^="date"], input[type="month"], input[type="time"] {color: rgb(150,150,150);border-color: rgb(204,204,204)}
+.input-radio input[type="radio"] {margin: 0 0.35em 0 0.25em;width: 0.9em;height: 0.9em;accent-color: var(--form-input-accent-color)}
+.input-checkbox input[type="checkbox"] {margin: 0 0.3em 0 0.35em;width: 0.85em;height: 0.85em;accent-color: var(--form-input-accent-color)}
+.field-input textarea {width: 100%;padding: 0.6em 0.3em 0.6em 0.6em;line-height: 1.2em;border-radius: var(--form-input-border-radius);resize: none}
+.field-select select {width: 100%;padding: 0.6em 0.6em 0.6em 0.38em;color: rgb(150,150,150);border-radius: var(--form-input-border-radius)}
+.input-address select {width: 100%;padding: 0.6em 0.6em 0.6em 0.38em;color: rgb(150,150,150);border-radius: var(--form-input-border-radius)}
+select > option {width: 100%;font-size: 1em;line-height: 1.6em;white-space: nowrap;color: black;background-color: white}
+select > option[value=""], option[hidden] {display: none;color: rgb(150,150,150)}
+.invalid-msgbox {display: flex}
+.form-group:not(.nowrap) .invalid-msgbox {margin-bottom: 0.5em}
+.form-group.nowrap .invalid-msgbox::before {content: '';flex: none;margin-right: 0.72em;width: var(--form-field-title-width)}
+.form-validate {margin-block-end: 1em;padding-inline: 1.2em}
+.danger {flex: auto;margin-top: 0.25em;font-size: 0.88em;line-height: 1.1em;color: red}
+.danger:empty {display: none}
+.form-button {
+    display: flex;
+    padding-block: 0.85em;
+    padding-inline: 1.2em;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-color: rgb(220,220,220);
+}
+button {
+    width: var(--form-input-width);
+    appearance: none;
+    outline: none;
+    font-size: inherit;
+    flex: none;
+    flex-basis: var(--form-button-width);
+    padding-inline: 2em;
+    margin-block: 0.35em;
+    line-height: 2.12em;
+    white-space: nowrap;
+    border: none;
+    border-radius: var(--form-button-border-radius);
+    cursor: pointer;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+button[type="reset"] {color: initial;background-color: #E5E5E5}
+button[type="button"][value="back"] {color: white;background-color: #E7696C}
+button[type="submit"] {color: white;background-color: var(--form-button-backg-color)}
+@media (hover: hover) and (pointer: fine) {
+    button[type="reset"]:hover {background-color: #D5D5D5}
+    button[type="submit"]:hover {background-color: var(--form-button-bgcolor-hover)}
+    button[type="button"][value="back"]:hover {background-color: #D55255}
+}
+@media (hover: none) and (pointer: coarse) {
+    button[type="reset"]:active {background-color: #BFBFBF}
+    button[type="submit"]:active {background-color: var(--form-button-bgcolor-active)}
+    button[type="button"][value="back"]:active {background-color: #BE5153}
+}
+.form-item:focus-within {background-color: var(--form-item-focus-bgcolor)}
+.form-item.invalid {background-color: var(--form-item-invalid-bgcolor)}
+input:not([readonly]):not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="image"]):focus {border-color: var(--form-input-focus-color)}
+input[required]:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="image"]):valid {border-color: var(--form-input-focus-color)}
+input.first:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="image"]):valid {border-color: var(--form-input-focus-color)}
+input[type^="date"]:focus, input[type^="date"][required]:valid, input.first[type^="date"]:valid {color: inherit}
+input[type="month"]:focus, input[type="month"][required]:valid, input.first[type="month"]:valid {color: inherit}
+input[type="time"]:focus, input[type="time"][required]:valid, input.first[type="time"]:valid {color: inherit}
+input.invalid:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="image"]) {color: red;border-color: rgb(255,60,60)}
+input.first:not([type="radio"]):not([type="checkbox"]):not([type="range"]):not([type="image"]):invalid {color: red;border-color: rgb(255,60,60)}
+textarea:focus, select:focus {border-color: var(--form-input-focus-color)}
+textarea.first:valid, textarea[required]:valid {border-color: var(--form-input-focus-color)}
+textarea.invalid, textarea.first:invalid {color: red;border-color: rgb(255,60,60)}
+select.selected:valid, select[required]:valid {color: inherit;border-color: var(--form-input-focus-color)}
+.form-item.invalid .input-address select {border-color: rgb(255,60,60)}
+select.invalid, select.selected:invalid {border-color: rgb(255,60,60)}
+input[data-type="select"]:focus {border-color: var(--form-input-focus-color)}
+input.first[data-type="select"] {border-color: var(--form-input-focus-color)}
+input[data-type="select"] {user-select: none;cursor: default}
+input[readonly]:not([data-type="select"]) {color: rgb(84,84,84);background-color: rgb(240,240,240);cursor: default}
+input[disabled] {color: rgb(84,84,84);background-color: rgb(240,240,240);cursor: default}
+select[disabled] {color: rgb(84,84,84);background-color: rgb(240,240,240);cursor: default}
+li, li:active {-webkit-tap-highlight-color: transparent}
+option, option:active {-webkit-tap-highlight-color: transparent}
+button, button:active {-webkit-tap-highlight-color: transparent}
+button:focus {outline: none}
+[contenteditable]:focus {outline: none}
