@@ -6,7 +6,7 @@
 #### 软件架构
 
 #### 展示页面
-    点击查看：http://beker.picp.vip/demo/form
+    点击查看：https://beker.picp.vip/demo/form
 
 
 #### 安装教程
