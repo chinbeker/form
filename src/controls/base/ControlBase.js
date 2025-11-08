@@ -102,7 +102,7 @@ export class ControlBase {
         if (Object.prototype.toString.call(item) !== '[object Object]'){throw new Error('Parameter type error')}
         const requiredOptions = ['type','name'];
         const booleanOptions = ['required','readonly','disabled'];
-        const stringOptions = ['head','describe'];
+        const stringOptions = ['label','describe'];
         for (const key of requiredOptions){
             if (!Object.hasOwn(item, key)) {throw new Error(`The "${key}" attribute is a required attribute.`)}
             if (typeof item[key] !== 'string'){throw new Error(`The "${key}" attribute must be of string type.`)}
