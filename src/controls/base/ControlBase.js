@@ -73,7 +73,7 @@ export class ControlBase {
         this.element.title = this.element.head.firstElementChild;
         this.element.describe = root.querySelector('i');
         this.element.danger =  root.querySelector('.danger');
-        if (item.head) {this.element.title.textContent = item.head}
+        if (item.label) {this.element.title.textContent = item.label}
         if (item.required) {this.element.head.classList.add('required')}
         if (item.describe) {this.element.describe.textContent = item.describe}
         this.root = root;
